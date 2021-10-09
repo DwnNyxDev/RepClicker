@@ -1,0 +1,131 @@
+if(ds_list_size(global.Gods)<11){
+if(global.Influence>=global.SummonCost&&!global.summon_animation){
+	global.Influence-=global.SummonCost;
+	if(global.SummonCost=1){
+		global.reroll_cost=1;
+	}
+	else{
+	global.reroll_cost=round(global.SummonCost/2);
+	}
+	obj_summon_background.image_alpha=0;
+summon_bg_rank.image_alpha=0;
+	global.SummonCost*=2;
+	global.summon_animation=true;
+	Gods = ds_list_create();
+	if(global.DawnLVL=0){
+		ds_list_add(Gods,"Dawn");
+	}
+	if(global.TerraLVL=0){
+		ds_list_add(Gods,"Terra");
+	}
+	if(global.ModoLVL=0){
+		ds_list_add(Gods,"Modo");
+	}
+	if(global.NeoLVL=0){
+		ds_list_add(Gods,"Neo");
+	}
+	if(global.AstraLVL=0){
+		ds_list_add(Gods,"Astra");
+	}
+	if(global.FenrirLVL=0){
+		ds_list_add(Gods,"Fenrir");
+	}
+	if(global.AsuraLVL=0){
+		ds_list_add(Gods,"Asura");
+	}
+	if(global.ChastiefolLVL=0){
+		ds_list_add(Gods,"Chastiefol");
+	}
+	if(global.SovereignLVL=0){
+		ds_list_add(Gods,"Sovereign");
+	}
+	if(global.CalypsoLVL=0){
+		ds_list_add(Gods,"Calypso");
+	}
+	if(global.GogettoLVL=0){
+		ds_list_add(Gods,"Gogetto");
+	}
+	posX=1;
+	show_debug_message(Gods);
+	if(ds_list_size(Gods)>=3){
+	repeat(3){
+	ds_list_shuffle(Gods);
+	new_hero = instance_create_layer(room_width/4*posX,room_height/2,"Instances",summoned_god);
+	new_hero.hero=ds_list_find_value(Gods,0);
+	ds_list_delete(Gods,0);
+	posX++;
+	}	
+	}
+	else{
+		repeat(ds_list_size(Gods)){
+	ds_list_shuffle(Gods);
+	new_hero = instance_create_layer(room_width/4*posX,room_height/2,"Instances",summoned_god);
+	new_hero.hero=ds_list_find_value(Gods,0);
+	ds_list_delete(Gods,0);
+	posX++;
+	}	
+	}
+		
+	
+	
+}
+else if(global.summon_animation&&ds_list_size(Gods)>3&&global.Influence>=global.reroll_cost){
+	global.Influence-=global.reroll_cost;
+	instance_destroy(summoned_god);
+	Gods = ds_list_create();
+	if(global.DawnLVL=0){
+		ds_list_add(Gods,"Dawn");
+	}
+	if(global.TerraLVL=0){
+		ds_list_add(Gods,"Terra");
+	}
+	if(global.ModoLVL=0){
+		ds_list_add(Gods,"Modo");
+	}
+	if(global.NeoLVL=0){
+		ds_list_add(Gods,"Neo");
+	}
+	if(global.AstraLVL=0){
+		ds_list_add(Gods,"Astra");
+	}
+	if(global.FenrirLVL=0){
+		ds_list_add(Gods,"Fenrir");
+	}
+	if(global.AsuraLVL=0){
+		ds_list_add(Gods,"Asura");
+	}
+	if(global.ChastiefolLVL=0){
+		ds_list_add(Gods,"Chastiefol");
+	}
+	if(global.SovereignLVL=0){
+		ds_list_add(Gods,"Sovereign");
+	}
+	if(global.CalypsoLVL=0){
+		ds_list_add(Gods,"Calypso");
+	}
+	if(global.GogettoLVL=0){
+		ds_list_add(Gods,"Gogetto");
+	}
+	posX=1;
+	show_debug_message(Gods);
+	if(ds_list_size(Gods)>=3){
+	repeat(3){
+	ds_list_shuffle(Gods);
+	new_hero = instance_create_layer(room_width/4*posX,room_height/2,"Instances",summoned_god);
+	new_hero.hero=ds_list_find_value(Gods,0);
+	ds_list_delete(Gods,0);
+	posX++;
+	}	
+	}
+	else{
+		repeat(ds_list_size(Gods)){
+	ds_list_shuffle(Gods);
+	new_hero = instance_create_layer(room_width/4*posX,room_height/2,"Instances",summoned_god);
+	new_hero.hero=ds_list_find_value(Gods,0);
+	ds_list_delete(Gods,0);
+	posX++;
+	}	
+	}
+	
+}
+}
